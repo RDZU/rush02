@@ -1,5 +1,16 @@
+ /* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   function.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jruf <jruf@student.42madrid.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:54:20 by jruf              #+#    #+#             */
+/*   Updated: 2023/11/26 20:18:48 by albperez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 char	*ft_strcpy(char *dest, char *src)
@@ -12,7 +23,6 @@ char	*ft_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		i++;
 	}
-
 	dest[i] = '\0';
 	return (dest);
 }
@@ -88,44 +98,31 @@ char	*ft_strstr(char *str, char *to_find)
 	return (0);
 }
 
-char *get_last_char(char *number) {
-  int i;
-  int len;
-  char *last;
+char	*get_last_char(char *number) {
+	int		i;
+	int		len;
+	char	*last;
 
-  len = ft_strlen(number) - 1;
-  i = 0;
-
-  // Allocate memory for the last array
-  last = malloc(sizeof(char) * 2);
-  if (last == NULL) {
-    return NULL; // Handle memory allocation failure
-  }
-
-  while (number[i] != '\0') {
-    if (i == len) {
-      last[0] = number[i];
-    }
-    i++;
-  }
-
-  last[1] = '\0';
-
-  return last;
-}
-//////////////////////////////////////
-
-void	ft_putstr(char *str)
-{
-	while (*str != '\0')
-		write (1, str++, 1);
+	len = ft_strlen(number) - 1;
+	i = 0;
+	last = malloc(sizeof(char) * 2);
+	if (last == NULL) {
+	return (NULL);
+	}
+	while (number[i] != '\0') {
+		if (i == len) {
+			last[0] = number[i];
+		}
+		i++;
+	}
+	last[1] = '\0';
+	return (last);
 }
 
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-///////////////////////////////////////
 
 char	*ft_strcat(char *dest, char *src)
 {
@@ -142,3 +139,21 @@ char	*ft_strcat(char *dest, char *src)
 	dest[i + j] = '\0';
 	return (dest);
 }
+
+int	ft_str_is_numeric(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (*str == '\0')
+		return (1);
+	while (*str != '\0')
+	{
+		if (*str < 48 || *str > 57)
+			return (0);
+		str++;
+	}
+	return (i);
+}
+
+

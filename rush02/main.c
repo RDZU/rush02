@@ -1,74 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: razamora <razamora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:54:52 by jruf              #+#    #+#             */
+/*   Updated: 2023/11/26 22:20:58 by razamora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
-#include <stdio.h>
+#include "header.h"
 
-int	ft_strlen(char *str)
+int	main(int argc, char **argv)
 {
-	int	i;
 
-	i = 0;
-	while (*str != '\0')
-	{
-		str++;
-		i++;
-	}
-	return (i);
-}
+	int	size;
 
-char *ft_conversion(*argv,size)
-{
-0: zero
-1: one
-2: two
-3: three
-4: four
-5: five
-6: six
-7: seven
-8: eight
-9: nine
-10: ten
-11: eleven
-12: twelve
-13: thirteen
-14: fourteen
-15: fifteen
-16: sixteen
-17: seventeen
-18: eighteen
-19: nineteen
-20: twenty
-30: thirty
-40: forty
-50: fifty
-60: sixty
-70: seventy
-80: eighty
-90: ninety
-100: hundred
-1000: thousand
-1000000: million
-}
-
-int main(int argc, char **argv)
-{
-	int	j;
-
-	j = 0;
 	if (argc == 2)
 	{
-		while (argv[1][j] != '\0')
+		if (ft_str_is_numeric (argv[1]) == 1 && argv[1][0] != '-' )
 		{
-			write(1, &argv[1][j], 1);
-			j++;
+			size = ft_strlen(argv[1]);
+			process_file(argv[1], "numbers.dict", size);
 		}
-	
+		else
+			write(1, "Dict Error\n", 11);
 	}
-    write(1, "\n", 1);
-    int size = ft_strlen(argv[1]);
-    ft_conversion(argv[1],size);
-
-    //printf("%d size: \n", size);
+	else if (argc == 3)
+	{
+		if (ft_str_is_numeric (argv[1]) == 1 && argv[1][0] != '-')
+		{
+			size = ft_strlen(argv[1]);
+			process_file(argv[1], argv[2], size);
+		}
+	}
+	else if (argc == 1 || argc > 3)
+	{
+		write(1, "Dict Error\n", 11);
+	}
 	return (0);
 }
-
-
